@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Trabalhe com Mine</title>
+      <link rel="shortcut icon" href="assets/gold.webp" type="image/x-icon">
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+      <link rel="stylesheet" media="screen" href="https://fontlibrary.org/face/minecraftia" type="text/css"/>
+      <script src="https://unpkg.com/feather-icons"></script>
+      <link rel="stylesheet" href="responsive.css">
+      <style>
+         body{
+         font-family: "Space Grotesk", serif;
+         }
+         .nav-li{
+         color: #52393f !important;
+         }
+         .nav-li, .nav-li-main, .card-info{
+         transition: 250ms;
+         }
+         .nav-li-main:hover{
+         transform: scale(1.1); 
+         }
+         .card-info:hover{
+         transform: scale(1.05); 
+         }
+         .nav-li:hover{
+         text-decoration: overline;
+         color: #52393f;
+         }
+         .fixed-logo {
+         position: fixed;
+         bottom: 20px;
+         right: 10px;
+         z-index: 1000; 
+         animation: pulse 2s ease-in-out infinite; 
+         }
+         @keyframes pulse {
+         0%, 100% {
+         transform: scale(1);
+         }
+         50% {
+         transform: scale(1.1);
+         }
+         }
+         .minecraft-btn {
+         background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMQAAAAPCAAAAACe4j/AAAAEuElEQVRIx1WWS5Ibuw5EtddrdRRJJE4iSKrb4c2/AUuy30iK+jEBHCTwAICMCgAKiGhKVQUwKzJHQo4mQGBy7AIvk1E2AQKhFt6bUGD1gILy0DkD4dmzACkGyzCScgFgQmLZr4LpQpC56QB2wgSYE8i1fd6xd1yPHIAKwAs14Undx2LIHK0X6vdFbzTa6CNBLQE8Y5rapn7oAl3KSDKC6cLfL6sLnIVG7ffnyUgvQ6rwLjUZdIVqWz0iEXXCZ+TJsV8feUdoPHDk+a/IeAbq0ldLT59jtHweHwmKS6gFSUYCqKcVsPami1pEnqolkCMBiAS87FXTICp03geYUr8TV8un3KuyC0BfTUzihOCdwjUya1bkT9VWe+AaFOoJzHdtERXRe/eulyEDhC6pjYwr+JQuIDU9/0wQBnJEAkd+9i6IRTJrV7YWnGfwLA6ESphkBoCu88M0YH1CTTOiRUpDdwpGkkP5yL9phhwn+QVxDarAXq513y9bLKgxBGR/CjDyMl4ECd6lO82CaMLbEHGHp1R8ePDERj392ssaCOigNjJ+dXXl6OLUFfVx6dA1BFJLlHpkUHPam095C3QJLIjn6OLIOB3xe0JS85Zd+govg1/z/UhtG3RdVW98yxNp5I0Vtf/U+6y/dJ/yHtSK4q7G9ARscC3/Df/kXTwiT3d6ovjEISLJIVEvBwWeCXlALZTbpy85xqWuf3sNiBBUmYjI+BqN6aNQqDWpipSYf3W1nOV/WALoykjIiCPreSn97UigsjZdPA5s3AmCDIxaVO0Fa1fV/qkaiijPPz/bEeRyLSBDI8K8j37TO8aH7vmOqUUQ1DboYhvqd+FlFGEo+2T75MbLGnjvPeu7Pl521Ap14dcR3h7p75qv4xieqnNDoyCPLt/yKkf5gOUXl+6S3d9Syq/982fz+fhpsm28C5EhJcxsWWQke6KoPMA7tqm7kKcrn6FLhWcoqCNCxDPyQ8wEKR73nIlEX8GpARSJX7/rzeNtWPD/Dl2IwtOYMwV7osGsHYJanzeU7KqIZVCTcrT0IEbyD4d1e1dkBtW2qLhLXK7a1ogDqsjI1DR4PY7nHEqfF9tn8HUJL+eQ/lGOXdwI1++57CqgmDaReM9CZYLAk4D4ymqti4KZI9Htz9OnrcuOhCQEqJfXaxHPAFG/l/ee1GFJPXmPryYUiUGPutnRGXkagmnjHk5RNpm7xxiclm6CjJEQ4+MD4xPmuT9Ef4b3YT3B51a7d4Np76PF0cavuC+SoaH6PlilipEakoJBJETWT3k7Hf+1REPj2fIx95t5ct6u9S5v3KM2fv2Ve29ax9yC98zT2IZot61MHyYtdPF92nguZ29xfcVxSu9Nj5Gl8G3wcVoW8n1Q/f6BHFEAyy5R2aRIdYH8XfV4453vHKcnqarXPD6mdrD0rlVV5xBPF2xuJM5Oo0SdaaqGMjJva7ii6bYv74IzPMo5pGebpu72ghypwTR+WWDuhQOkFijGyAzF3GXh11lEH0hkPINZivpTqLEtVm2j1hVcn/S0//q0es5dbyxOErxKivQ+bHotvzcT3/XztPf20XqG6fJZMePT2X6ts+nlm9LoSYHMiHuJjGXniB7v2fo/5qT4nuxYg6AAAAAASUVORK5CYII=);
+         border-color: #AAA #565656 #565656 #AAA;
+         text-shadow: 3px 3px #4C4C4C;
+         outline: 2px solid #000;
+         }
+         .minecraft-btn:hover {
+         background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMQAAAAPCAMAAACMV5AuAAAAVFBMVEVtd7ZteLZverdwerdwe7hxfLhyfbl0frl1f7p2gLt4grx6hLx7hb18hr5+iL+AisCBi8GCjMGEjsKGkMOHkcSIksSKk8WLlMWLlcaMlcaNlsePmMdwBHmVAAAEjElEQVRIx1WW27YbKw5F3Ul2GYTWFAJX+pyd///PfgDsTg0/mSqQ1k08AEAeDkAA7kXyDAeyu2QCWREgCGSvAAbIE/D9U2m8Ji4Drw0CEhP7EMiqBFxmDMBEkHvd5AziDsjoCKQXddUl1nuZgMZrf0PMdj1kgNY+Ay+CJPg8kj1rR3X/GS9kxaoJVFaB6QkxIX5TBX65mpAZGQH3HaoCFMj6/GxuYgDyTsyup1hfxwxVN+F08ANGANyf8jqAPaBpranJvhxV+VV08JGPVScmcL8W4EIuAFWFHMZrUkUfNC3WtIsEaFogMWJRl839MES61w1cjMUsI1fb7GKaoENMOdFNykzXPz2mlwekkXjV4ioO9b15rZWZd4AaCL9cxdSutl8buIOUkd8JTgAy01IKoFoFPhAZr65SbDHgxFIGKi5IpLaKdlafAHxaVWDt2SSZ24LQhEx6aLGyj7RtELDLiA7EiD72ehBiQJo5oPq1nOQMYGAIYoY2AwIrImaA+25P8vZRa0KgqrjnQIaACiom/1G9Sla3GUHVLl/mMl/mxeUPGT0T5seAeeAQtF9WV2F7cX4niJ4DYmBd12oh7jymyRkBuq6M81mQuExHVv313beo9VH3ojfM2zZ8AkTG8X7EeDs6OZw+mrY7E5l/gqQJmZx+YySQAi1/dqQZy0as4FL1d7nrcfd1kjWTX1ZIYESTUCnuPZE7+anrqcxlz3diUX2HowHCf15S3AvxrnhRxeMwtQACGYGKZ7wGjNl7vH73MHdP8s/vSXM0FiRqMnPowfbjRsfe6n7nZ/FGIyfgF6+A/t1XTrcWB3Q42AxkMOfMfuJotRPgqGqFMfB8KO6eN+BEpO8F2eLZ18YO0GUdmEDcXMcNey+XuOfvP5P35guSVxAzWRYUpIoSuZiJrJ/p4zPouw0pwX+6XwpIcyNWEcJ/uf5Svuyx+ncTfhmotEhIBPe/8f961F/jI5aQfSs3WFOwChnZZxPk+HQjZu/WBuDFVwobZnoLISBOdkmNLFPE9iadiImsgTcdTDKA8dj1qBT518Xcg6+6L0Yl/nqCLeH+b46InkCSETTBzEQBRoPEwS9lKVUkpEx426M3oIMHYQLhK/B6jHvgXw6if4+YM4mlJdWDpLw4MhHgjwBZgIt+ZJdAVENOEkiv6mY4yy5nFPjnQmGfGVy0IqP+cmbsWF7Se/rT+5ZBzHPdKfajHW2ouWldPJaoTDJ3GUYTNMV/IyaiPYqQuX0VPXK+ra3Mc8c5Wlkp4D/e5S5htjXU3HnPPJsBXraRM/rSpOMX99zMoVradRl9AMxJdVPIYgf8Rhu0DvLM739A5rmjJ51QcW9SFXjcvR85oYOhSKTsd65pqdKWIV59ZO/7kKTDJLbvYw9XVRIyTXKJdfm4rOjE18yT8IHM/euZa0Z0fLvBSIh7h925QLoXR80WNfnqOHHP7Qk5aj+dTLX4E3hhIkafoGd15/IDT/lPTVSVr233dy6OkJtiLm0yBu+byeE2Yc59pVrDdKyPjxgD4h6r6vcFwpYNHMxVBaE2ApmfyTTjf5jQnWRymG7iAAAAAElFTkSuQmCC);
+         border-color: #BDC6FF #59639A #59639A #BDC6FF;
+         }
+      </style>
+   </head>
+   <body>
+         <div class="container">
+            <header class="d-flex flex-wrap justify-content-center py-3 mb-4 navbar-resp">
+               <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none logo-resp">
+               <img src="assets/logo.png" width="45%"  alt="" class="bi me-2">
+               </a>
+               <ul class="nav nav-pills">
+                  <li class="nav-item"><a href="#" class="nav-link nav-li-main active" aria-current="page" style="background-color: #52393f !important; border-radius: 2px !important;">Início</a></li>
+                  <li class="nav-item"><a href="#resultados" class="nav-link nav-li" >Meus Resultados</a></li>
+                  <li class="nav-item"><a href="#depoimentos" class="nav-link nav-li" >Depoimentos</a></li>
+                  <li class="nav-item"><a href="#conteudo" class="nav-link nav-li" >Conteúdo</a></li>
+                  <li class="nav-item"><a href="#faq" class="nav-link nav-li" >Perguntas Frequentes</a></li>
+               </ul>
+            </header>
+         </div>
+      <section>
+         <div class="container py-4">
+            <div class=" mb-4 bg-body-tertiary rounded-3" style="padding-left: 5%; padding-top: 5%;">
+               <img src="assets/teste2.png"  alt="" style="display: none;" class="firts-img-2">
+
+               <div style="display: flex; justify-content: space-between; ">
+                  <div>
+                     <div class="container-fluid py-5">
+                        <h1 class="display-5 fw-bold">Lucre com sua Paixão por Minecraft</h1>
+                        <p class=" fs-4">Com 2 horas por dia e estratégias comprovadas, você pode faturar alto vendendo serviços de Minecraft!</p>
+                        <div style="display: flex;">
+                           <a href="#conteudo">
+                           <button class="btn btn-primary btn-lg" style="background-color: #dda130; border: none; border-radius: 5px !important" type="button">Conheça o Curso! <img src="assets/block-icon.png" width="30px" alt=""> </button></a>
+                           
+                           <a href="https://www.youtube.com/watch?v=VfXzt219DVE" target="_blank"><button class="btn btn-primary btn-lg mx-2" style=" color: #38130f; background-color: #f8f9fa; border: 1px #38130f solid; border-radius: 5px !important" type="button"><i data-feather="codesandbox" ></i>
+                           Conheça o Professor!</button></a>
+                        </div>
+                     </div>
+                     <a href="#resultados">
+                     <button class="btn btn-primary btn-lg mx-2" style="background-color: #38130f; border-radius: 5px !important; text-align: left; padding-right: 5%;" type="button"><i data-feather="arrow-down-circle" style="margin-right: 2px;" ></i> Fature com Serviços de Minecraft  <br> <small style="color: rgb(223, 223, 223);"><i data-feather="codesandbox" style="color: transparent !important; margin-right: 2px;" ></i> Veja meus Resultados abaixo</small>
+                     </button></a>
+                  </div>
+                  <div>
+                     <img src="assets/teste2.png" height="80%" alt="" style="margin-left: 5%;" class="firts-img-1" >
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+      <section>
+         <div class="container mt-5">
+            <div class="my-5">
+               <h2 class="fw-bold" id="resultados" style="text-align: center; color: #dda130; font-size: 2.5em; text-decoration: overline;">Veja os meus Resultados de Vendas</h2>
+               <p style="text-align: center; color: #52393f; font-size: 1.2em;">Eu achava que era impossível viver com games sem saber programar...</p>
+            </div>
+            <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+               <div class="carousel-inner">
+                  <div class="carousel-item active">
+                     <img src="assets/resultado-1.webp" class="d-block w-100" alt="Image 1" style="filter: hue-rotate(215deg) brightness(1.1); border: 1px #38130f solid; border-radius: 5px;">
+                  </div>
+                  <div class="carousel-item">
+                     <img src="assets/resultado-2.webp" class="d-block w-100" alt="Image 2" style="filter: hue-rotate(215deg) brightness(1.1); border: 1px #38130f solid; border-radius: 5px;">
+                  </div>
+                  <div class="carousel-item">
+                     <img src="assets/resultado-3.webp" class="d-block w-100" alt="Image 3" style="filter: hue-rotate(215deg) brightness(1.1); border: 1px #38130f solid; border-radius: 5px;">
+                  </div>
+               </div>
+               <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+               <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+               <span class="visually-hidden">Previous</span>
+               </button>
+               <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+               <span class="carousel-control-next-icon" aria-hidden="true"></span>
+               <span class="visually-hidden">Next</span>
+               </button>
+            </div>
+         </div>
+      </section>
+      <section class="container" style="margin-top: 5%; ">
+         <h2 class="fw-bold" id="depoimentos" style="text-align: center; color: #52393f; font-size: 2.5em; text-decoration: overline;">Quem Aplicou o Meu Método Garante!</h2>
+         <p style="text-align: center; color: #52393f; font-size: 1em;">Com minhas estratégias comprovadas, você pode faturar alto vendendo serviços de Minecraft!</p>
+         <div class="row align-items-md-stretch my-4">
+            <div class="col-md-6">
+               <div class="h-100 px-5 py-4 bg-body-tertiary  rounded-3">
+                  <div style="text-align: center; margin-bottom: 10px;">
+                     <h2>Weslly</h2>
+                     <small style="margin-left: 10px;">Em apenas 10 dias aplicando as estratégias do curso Trabalhe com Mine, Weslly faturou mais de R$1.000 vendendo seus serviços!
+                     </small>
+                  </div>
+                  <img src="assets/depoimento-1.webp" alt="" width="100%" style="margin-bottom: 15px; border-radius: 10px;">
+               </div>
+            </div>
+            <div class="col-md-6">
+               <div class="h-100 px-5 py-4 bg-body-tertiary  rounded-3" >
+                  <div style="text-align: center; margin-bottom: 10px;">
+                     <h2>André</h2>
+                     <small style="margin-left: 10px;">Com apenas 2 horas por dia, André seguiu minhas estratégias de vendas e precificação, faturando mais de R$5.000 em tempo recorde!</small>
+                  </div>
+                  <img src="assets/depoimento-2.webp" alt="" width="100%" style="margin-bottom: 15px; border-radius: 10px;">
+               </div>
+            </div>
+         </div>
+      </section>
+      <section>
+         <div class="container px-4 py-5" id="featured-3">
+            <h2 class="fw-bold title-1-resp" id="conteudo" style="text-align: center; color: #dda130; font-size: 2.5em; text-decoration: overline;">O que Você vai Aprender Aqui?</h2>
+            <p style="text-align: center; color: #52393f; font-size: 1.2em;">Como faturar em dólar com serviços de Minecraft, mesmo sem experiência em programação</p>
+            <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
+               <div class="feature col card-resp">
+                  <img src="assets/icon-1.jpg" alt="" width="20%" style="border-radius: 5px;" class="my-4 card-info">
+                  <h3 class="fs-2 text-body-emphasis">ESTUDO DE CASO</h3>
+                  <p>Veja como eu fiz vendi um servidor de Minecraft por $560 e receba o roteiro exato que usei.
+                  </p>
+                  <a href="#checkout">
+                  <button class="btn btn-primary btn-lg card-info" style="background-color: #38130f; border: none; border-radius: 5px !important" type="button">Confira o Curso!  </button></a>
+               </div>
+               <div class="feature col card-resp">
+                  <img src="assets/icon-2.jpg" alt="" width="20%" style="border-radius: 5px;" class="my-4 card-info">
+                  <h3 class="fs-2 text-body-emphasis">VENDA NA GRINGA</h3>
+                  <p>Aprenda como se comunicar em inglês mesmo que não domine a lingua!</p>
+                  <a href="#checkout">
+
+                  <button class="btn btn-primary btn-lg card-info" style="background-color: #dda130; border: none; border-radius: 5px !important" type="button">Confira a mentoria!  </button></a>
+               </div>
+               <div class="feature col card-resp">
+                  <img src="assets/icon-3.jpg" alt="" width="20%" style="border-radius: 5px;" class="my-4 card-info">
+                  <h3 class="fs-2 text-body-emphasis">COMUNIDADE DOS ALUNOS</h3>
+                  <p>Conecte-se com outros alunos, tire dúvidas e faça parcerias estratégicas para crescer mais rápido.</p>
+                  <a href="#checkout">
+
+                  <button class="btn btn-primary btn-lg card-info" style="background-color: #38130f; border: none; border-radius: 5px !important" type="button">Conheça o Treinamento!  </button></a>
+               </div>
+            </div>
+            <div class="row g-4  row-cols-1 row-cols-lg-3" style="margin-bottom: 5%;">
+               <div class="feature col card-resp">
+                  <img src="assets/icon-4.jpg" alt="" width="20%" style="border-radius: 5px;" class="my-4 card-info">
+                  <h3 class="fs-2 text-body-emphasis">MARKETING AVANÇADO</h3>
+                  <p>Aprenda a divulgar seus serviços fora das plataformas e aumentar suas vendas!</p>
+                  <a href="#checkout">
+
+                  <button class="btn btn-primary btn-lg card-info" style="background-color: #dda130; border: none; border-radius: 5px !important" type="button">Adquira uma Formação! </button></a>
+               </div>
+               <div class="feature col card-resp">
+                  <img src="assets/icon-5.jpg" alt="" width="20%" style="border-radius: 5px;" class="my-4 card-info">
+                  <h3 class="fs-2 text-body-emphasis">CRIANDO RECURSOS</h3>
+                  <p>Crie plugins, recursos e configurações profissionais sem precisar programar usando IA!</p>
+                  <a href="#checkout">
+
+                  <button class="btn btn-primary btn-lg card-info" style="background-color: #38130f; border: none; border-radius: 5px !important" type="button">Saiba mais!  </button></a>
+               </div>
+               <div class="feature col card-resp">
+                  <img src="assets/icon-6.jpg" alt="" width="20%" style="border-radius: 5px;" class="my-4 card-info">
+                  <h3 class="fs-2 text-body-emphasis ">VENDAS MAIS</h3>
+                  <p>Vender mais significa aparecer mais vezes. Vou te mostrar como ser visto por quem realmente importa.</p>
+                  <a href="#checkout">
+                  <button class="btn btn-primary btn-lg card-info" style="background-color: #dda130; border: none; border-radius: 5px !important" type="button">Aprenda uma Profissão!  </button></a>
+               </div>
+            </div>
+         </div>
+      </section>
+      <section>
+         <h2 class="fw-bold title-1-resp" style="text-align: center; color: #52393f; font-size: 2.5em; text-decoration: overline;">Leve de Brinde uma Pequena Introdução ao..</h2>
+         <p style="text-align: center; color: #52393f; font-size: 1.2em;">Método completo para identificar oportunidades lucrativas, aprender a vender e receber clientes consistentemente.
+         </p>
+         <div class="container" style="margin-top: 3%;">
+         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+            <div class="col">
+               <div class="card shadow-sm" style="background-color: #f8f9fa; border: none;">
+                  <img class="bd-placeholder-img card-img-top" src="assets/brinde-1.webp" alt="" width="100%" height="225">
+                  <div class="card-body">
+                     <h3 class="card-text">Criação de mapas com ferramentas prontas</h3>
+                     <p>Receba uma aula introdutória gratuita do curso de criação de mapas, ensinando como começar com ferramentas simples e acessíveis. Ideal para iniciantes que querem explorar esse universo!
+                     </p>
+                     <div class="d-flex justify-content-between align-items-center">
+                        <a href="https://api.whatsapp.com/send/?phone=5548988483638&text&type=phone_number&app_absent=0" target="_blank">
+                        <button class="btn btn-primary btn-lg" style=" color: #38130f; background-color: #f8f9fa; border: 1px #38130f solid; border-radius: 5px !important" type="button"> <img src="assets/gold.webp" width="25px" style="margin-bottom: 2px;" alt=""> Saiba mais! </button></a>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="col">
+               <div class="card shadow-sm" style="background-color: #f8f9fa; border: none;">
+                  <img class="bd-placeholder-img card-img-top" src="assets/brinde-2.webp" alt="" width="100%" height="225">
+                  <div class="card-body">
+                     <h3 class="card-text">Criação de Skins, Texturas, Modelos 3D e mais</h3>
+                     <p>Receba também uma aula introdutória gratuita sobre a principal ferramenta para criar skins, texturas e modelos 3D low-poly, ideal para Minecraft e outros jogos. 
+                     </p>
+                     <div class="d-flex justify-content-between align-items-center">
+                        <a href="https://api.whatsapp.com/send/?phone=5548988483638&text&type=phone_number&app_absent=0" target="_blank">
+                        <button class="btn btn-primary btn-lg" style=" color: #38130f; background-color: #f8f9fa; border: 1px #38130f solid; border-radius: 5px !important" type="button"> <img src="assets/diamond.png" width="25px" alt="" style="margin-bottom: 2px;"> Saiba Mais! </button></a>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="col">
+               <div class="card shadow-sm" style="background-color: #f8f9fa; border: none;">
+                  <img class="bd-placeholder-img card-img-top" src="assets/brinde-3.webp" alt="" width="100%" height="225">
+                  <div class="card-body">
+                     <h3 class="card-text">Como funciona um servidor de Minecraft
+                     </h3>
+                     <p>E uma aula introdutória gratuita do curso de servidores de Minecraft, explicando a estrutura do servidor, softwares necessários, plugins e configurações básicas.
+                     </p>
+                     <div class="d-flex justify-content-between align-items-center">
+                        <a href="https://api.whatsapp.com/send/?phone=5548988483638&text&type=phone_number&app_absent=0" target="_blank">
+                        <button class="btn btn-primary btn-lg" style=" color: #38130f; background-color: #f8f9fa; border: 1px #38130f solid; border-radius: 5px !important" type="button"> <img src="assets/netherite.webp" width="25px" alt="" style="margin-bottom: 2px;"> Saiba Mais!</button></a>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+      <section class="my-4 container" >
+         <div id="checkout" style="display: flex; align-items: center; justify-content: center;">
+            <img src="assets/checkout-1.webp" alt="" width="50%"  style="margin-top: 5%; margin-bottom: 1%;" class="img-resp">
+         </div>
+         <p class="px-5" style="text-align: center; font-size: 1.3em; margin-top: 1%; margin-bottom: 3%;">Eu te mostrarei exatamente como encontrar seus primeiros clientes internacionais e oferecer seus serviços em dólar, ajudando você a construir uma reputação sólida nas plataformas. </p>
+         
+         <div style="display: none;" class="firts-img-2">
+            <div class="modal-body ">
+               <div style="display: flex; align-items: center; justify-content: center;">
+                  <div>
+                     <img src="assets/checkout-2.webp" alt="" width="80%" class="img-resp">
+                     <ul class="d-grid gap-4 my-5 list-unstyled small">
+                        <li class="d-flex gap-4 px-2" >
+                           <img src="assets/check-square-2.svg" alt="Check Square Icon" width="4.5%">
+                           <p class="mb-0" style="font-size: 1.3em;">Negociação: Aprenda a Fechar Vendas de Alto Valor</p>
+                        </li>
+                        <li class="d-flex gap-4 px-2" >
+                           <img src="assets/check-square-2.svg" alt="Check Square Icon" width="4.5%">
+                           <p class="mb-0" style="font-size: 1.3em;">Script Pronto Para Fechar Vendas de Alto Valor
+                           </p>
+                        </li>
+                        <li class="d-flex gap-4 px-2" >
+                           <img src="assets/check-square-2.svg" alt="Check Square Icon" width="4.5%">
+                           <p class="mb-0" style="font-size: 1.3em;">Venda na Gringa Sem Falar Inglês</p>
+                        </li>
+                     </ul>
+                  </div>
+               </div>
+            </div>
+            <div class="modal-body  ">
+               <div style="display: flex; align-items: center; justify-content: center;">
+                  <div>
+                  <img src="assets/checkout-3.webp" alt="" width="65%" class="img-resp" >
+                     <ul class="d-grid gap-4 my-5 list-unstyled small">
+                        <li class="d-flex gap-4 px-2" >
+                           <img src="assets/check-square.svg" alt="Check Square Icon" width="4.5%">
+                           <p class="mb-0" style="font-size: 1.3em;">Criando Configs com IA para Vender Rápido
+                           </p>
+                        </li>
+                        <li class="d-flex gap-4 px-2" >
+                           <img src="assets/check-square.svg" alt="Check Square Icon" width="4.5%">
+                           <p class="mb-0" style="font-size: 1.3em;">Fazendo Suas Primeiras Vendas Mais Rápido</p>
+                        </li>
+                        <li class="d-flex gap-4 px-2 " >
+                           <img src="assets/check-square.svg" alt="Check Square Icon" width="4.5%">
+                           <p class="mb-0" style="font-size: 1.3em;">Aumentando o Valor dos Seus Serviços</p>
+                        </li>
+                        <li class="d-flex gap-4 px-2" >
+                           <img src="assets/check-square.svg" alt="Check Square Icon" width="4.5%">
+                           <p class="mb-0" style="font-size: 1.3em;">Marketing Para Captar Clientes de Fora</p>
+                        </li>
+                     </ul>
+                  </div>
+               </div>
+            </div>
+         </div>
+
+
+         <div style="display: flex;" class="firts-img-1">
+            <div class="modal-body ">
+               <div style="display: flex; align-items: center; justify-content: center;">
+                  <img src="assets/checkout-2.webp" alt="" width="80%" class="img-resp">
+               </div>
+            </div>
+            <div class="modal-body  ">
+               <div style="display: flex; align-items: center; justify-content: center;">
+                  <img src="assets/checkout-3.webp" alt="" width="65%" class="img-resp" >
+               </div>
+            </div>
+         </div>
+         <div style="display: flex;" class="firts-img-1">
+            <div class="modal-body ">
+               <ul class="d-grid gap-4 my-5 list-unstyled small">
+                  <li class="d-flex gap-4 px-2" >
+                     <img src="assets/check-square-2.svg" alt="Check Square Icon" width="4.5%">
+                     <p class="mb-0" style="font-size: 1.3em;">Negociação: Aprenda a Fechar Vendas de Alto Valor</p>
+                  </li>
+                  <li class="d-flex gap-4 px-2" >
+                     <img src="assets/check-square-2.svg" alt="Check Square Icon" width="4.5%">
+                     <p class="mb-0" style="font-size: 1.3em;">Script Pronto Para Fechar Vendas de Alto Valor
+                     </p>
+                  </li>
+                  <li class="d-flex gap-4 px-2" >
+                     <img src="assets/check-square-2.svg" alt="Check Square Icon" width="4.5%">
+                     <p class="mb-0" style="font-size: 1.3em;">Venda na Gringa Sem Falar Inglês</p>
+                  </li>
+               </ul>
+            </div>
+            <div class="modal-body  ">
+               <ul class="d-grid gap-4 my-5 list-unstyled small">
+                  <li class="d-flex gap-4 px-2" >
+                     <img src="assets/check-square.svg" alt="Check Square Icon" width="4.5%">
+                     <p class="mb-0" style="font-size: 1.3em;">Criando Configs com IA para Vender Rápido
+                     </p>
+                  </li>
+                  <li class="d-flex gap-4 px-2" >
+                     <img src="assets/check-square.svg" alt="Check Square Icon" width="4.5%">
+                     <p class="mb-0" style="font-size: 1.3em;">Fazendo Suas Primeiras Vendas Mais Rápido</p>
+                  </li>
+                  <li class="d-flex gap-4 px-2 " >
+                     <img src="assets/check-square.svg" alt="Check Square Icon" width="4.5%">
+                     <p class="mb-0" style="font-size: 1.3em;">Aumentando o Valor dos Seus Serviços</p>
+                  </li>
+                  <li class="d-flex gap-4 px-2" >
+                     <img src="assets/check-square.svg" alt="Check Square Icon" width="4.5%">
+                     <p class="mb-0" style="font-size: 1.3em;">Marketing Para Captar Clientes de Fora</p>
+                  </li>
+               </ul>
+            </div>
+         </div>
+         <p class="px-5" style="text-align: center; font-size: 1.3em; margin-top: 1%; margin-bottom: 2%;">Sinceramente, quanto vale um conhecimento que te ensina a faturar em dólar em menos de 30 dias? <br> <span style="font-weight: bold; color: rgb(11, 196, 42); font-size: 1.2em;">Apenas 12x de R$9,70 </span>  </p>
+         <a href="https://payfast.greenn.com.br/72401/offer/e9bVXt?ch_id=15147&b_id_1=59630&b_offer_1=hUS0AZ&b_id_2=83170&b_offer_2=dMEWMj&_gl=1*bdh0eq*_ga*MTQ1NDUzMDAxOC4xNzM1NDQwMjQ1*_ga_NMBFFDJ6GE*MTczNTQ5OTkwNy41LjEuMTczNTUwMTUxNy4wLjAuMjc0MzQxNTA1" target="_blank">
+         
+         <button class="minecraft-btn mx-auto w-64 text-center text-white truncate p-1 border-2 border-b-4 hover:text-yellow-200" style="width: 100%; font-size: 1.8em; ">Garantir Oferta!</button></a>
+         <p class="px-5" style="text-align: center; font-size: 1em; margin-top: 1%; margin-bottom: 2%;">Sete dias de Garantia Garantido!!   </p>
+      </section>
+      <section style="margin-top: 5%;">
+         <div class="container my-5" >
+            <h3 class="fw-bold" id="faq" style="text-align: center; color: #52393f; font-size: 2em; text-decoration: overline;">Perguntas Frequentes</h3>
+            <p style="text-align: center; color: #52393f; font-size: 1.2em;">Ou tire qualquer outra dúvida no meu Whatsapp ao lado!</p>
+            <div id="faqAccordion" style="margin-top: 4%;" >
+               <div class="card" >
+                  <div class="card" style="border: 2px #38130f solid;">
+                     <div class="card-header" id="faq3" style="background-color: transparent !important;">
+                        <h5 class="mb-0 ">
+                           <button class="btn btn-link collapsed lead  " data-toggle="collapse" data-target="#collapse3" aria-expanded="false" aria-controls="collapse3" style="font-size: 0.92em; color: #1f1f1f; text-decoration: none;" >
+                           Preciso saber programar para fazer o curso Trabalhe com Mine?
+                           </button>
+                        </h5>
+                     </div>
+                     <div id="collapse3" class="collapse" aria-labelledby="faq3" data-parent="#faqAccordion"  >
+                        <div class="card-body lead fs-5 " >
+                           Não! O curso é estruturado para que qualquer pessoa, mesmo sem habilidades de programação, consiga aprender e aplicar as estratégias para ganhar dinheiro com Minecraft e outros jogos. Você também aprenderá a usar IA para criar recursos sem precisar programar.                                 
+                        </div>
+                     </div>
+                  </div>
+                  <div class="card-header" id="faq2" style="background-color: transparent !important;">
+                     <h5 class="mb-0 ">
+                        <button class="btn btn-link collapsed lead " data-toggle="collapse" data-target="#collapse2" aria-expanded="false" aria-controls="collapse2" style="font-size: 0.92em; color: #1f1f1f; text-decoration: none;">
+                        Quanto tempo leva para começar a ganhar dinheiro?
+                        </button>
+                     </h5>
+                  </div>
+                  <div id="collapse2" class="collapse" aria-labelledby="faq2" data-parent="#faqAccordion" >
+                     <div class="card-body lead fs-5 RText500">
+                        Você aprenderá como configurar  em plataformas de pagamento que aceitam clientes internacionais, permitindo que você receba em dólar de forma fácil e segura.
+                     </div>
+                  </div>
+               </div>
+               <div class="card">
+                  <div class="card-header" id="faq4" style="background-color: transparent !important;">
+                     <h5 class="mb-0 ">
+                        <button class="btn btn-link collapsed lead " data-toggle="collapse" data-target="#collapse4" aria-expanded="false" aria-controls="collapse4" style="font-size: 0.92em; color: #1f1f1f; text-decoration: none;">
+                        O curso oferece suporte caso eu tenha dúvidas?
+                        </button>
+                     </h5>
+                  </div>
+                  <div id="collapse4" class="collapse" aria-labelledby="faq4" data-parent="#faqAccordion">
+                     <div class="card-body lead fs-5 ">
+                        Sim, você terá acesso a tickets de suporte na área de membros para fazer perguntas, ou se precisar pode entrar em contato com minha equipe no WhatsApp.
+                     </div>
+                  </div>
+               </div>
+               <div class="card">
+                  <div class="card-header" id="faq1" style="background-color: transparent !important;">
+                     <h5 class="mb-0 ">
+                        <button class="btn btn-link lead  collapsed " data-toggle="collapse" data-target="#collapse1" aria-expanded="false" aria-controls="collapse1" style="font-size: 0.92em; color: #1f1f1f; text-decoration: none;">
+                        O curso é focado apenas em Minecraft?                                  </button>
+                     </h5>
+                  </div>
+                  <div id="collapse1" class="collapse " aria-labelledby="faq1" data-parent="#faqAccordion" >
+                     <div class="card-body lead fs-5  ">
+                        Embora o foco principal seja Minecraft, as estratégias de freelancing ensinadas podem ser aplicadas a outros jogos e serviços digitais, permitindo que você amplie suas oportunidades.
+                     </div>
+                  </div>
+               </div>
+               <div class="card">
+                  <div class="card-header" id="faq5" style="background-color: transparent !important;">
+                     <h5 class="mb-0 ">
+                        <button class="btn btn-link collapsed lead " data-toggle="collapse" data-target="#collapse5" aria-expanded="false" aria-controls="collapse5" style="font-size: 0.92em; color: #1f1f1f; text-decoration: none;">
+                        Quanto tempo tenho acesso ao curso?
+                        </button>
+                     </h5>
+                  </div>
+                  <div id="collapse5" class="collapse" aria-labelledby="faq5" data-parent="#faqAccordion" >
+                     <div class="card-body lead fs-5 ">
+                        Ao adquirir o curso, garantimos acesso ao conteúdo atual ou atualizações por 1 ano. Após esse prazo, garantimos o direito de remover acesso devido a custos de hospedagem.
+                     </div>
+                  </div>
+               </div>
+               <div class="card">
+                  <div class="card-header" id="faq6" style="background-color: transparent !important;">
+                     <h5 class="mb-0 ">
+                        <button class="btn btn-link collapsed lead " data-toggle="collapse" data-target="#collapse6" aria-expanded="false" aria-controls="collapse6" style="font-size: 0.92em; color: #1f1f1f; text-decoration: none;">
+                        Existe suporte para dúvidas durante o curso?
+                        </button>
+                     </h5>
+                  </div>
+                  <div id="collapse6" class="collapse" aria-labelledby="faq6" data-parent="#faqAccordion" >
+                     <div class="card-body lead fs-5 ">
+                        Sim! Além do grupo exclusivo no Telegram, onde você pode interagir com outros alunos e tirar dúvidas, você também poderá optar por materiais complementares, mentorias e cursos pagos caso sinta necessidade.
+                     </div>
+                  </div>
+               </div>
+               <div class="card">
+                  <div class="card-header" id="faq7" style="background-color: transparent !important;">
+                     <h5 class="mb-0 ">
+                        <button class="btn btn-link collapsed lead " data-toggle="collapse" data-target="#collapse7" aria-expanded="false" aria-controls="collapse7" style="font-size: 0.92em; color: #1f1f1f; text-decoration: none;">
+                        Como faço para captar clientes internacionais se não falo inglês?
+                        </button>
+                     </h5>
+                  </div>
+                  <div id="collapse7" class="collapse" aria-labelledby="faq" data-parent="#faqAccordion" >
+                     <div class="card-body lead fs-5 ">
+                        No curso, você vai aprender a usar ferramentas e estratégias que permitem se comunicar com clientes internacionais, mesmo sem saber falar inglês, garantindo que você possa vender na gringa sem barreiras.
+                     </div>
+                  </div>
+               </div>
+               <!-- Adicione mais perguntas aqui conforme necessário -->
+            </div>
+         </div>
+      </section>
+      <footer>
+         <div class="d-flex flex-column flex-sm-row justify-content-between py-4 my-4 border-top container">
+            <a href="politica.html" target="_blank" style="text-decoration: none; color: #0d0504 !important;">&copy; Política de Privacidade</a>
+            <ul class="list-unstyled d-flex">
+               <li class="ms-3"><a class="link-body-emphasis" href="https://www.youtube.com/@LucasWilluweit/videos" target="_blank"><i data-feather="youtube"></i>
+                  </a>
+               </li>
+               <li class="ms-3"><a class="link-body-emphasis" href="https://www.instagram.com/lwbravo/" target="_blank"><i data-feather="instagram"></i>
+                  </a>
+               </li>
+               <li class="ms-3"><a class="link-body-emphasis" href="#">  </a></li>
+            </ul>
+         </div>
+      </footer>
+
+      <a href="https://api.whatsapp.com/send/?phone=5548988483638&text&type=phone_number&app_absent=0" target="_blank">
+      <img src="assets/whatsapp-logo.png" alt="" width="4.5%" class="fixed-logo"></a>
+
+      <script>
+         // Smooth Scroll Polyfill for older browsers
+         if ('scrollBehavior' in document.documentElement.style === false) {
+         // Load the polyfill script
+         import('https://cdn.jsdelivr.net/npm/smoothscroll-polyfill@0.4.4/dist/smoothscroll.min.js').then(() => {
+               smoothscroll.polyfill();
+         });
+         }
+      </script>
+      <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+      <script>
+         feather.replace();
+      </script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+   </body>
+</html>

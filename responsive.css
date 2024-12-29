@@ -1,0 +1,35 @@
+@media (max-width: 1200px) {
+    .firts-img-1{
+        display: none !important;
+    }
+    .firts-img-2{
+        display: block !important;
+    }
+    .navbar-resp, .logo-resp{
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        text-align: center !important;
+    }
+  }
+
+
+
+  @media (max-width: 800px) {
+    .firts-img-2{
+        width: 100%;
+    }
+    .title-1-resp{
+        text-decoration: none !important;
+    }
+    .card-resp{
+        text-align: center;
+    }
+    .img-resp{
+        width: 100% !important;
+    }
+    .fixed-logo{
+        width: 10%;
+    }
+
+  }
